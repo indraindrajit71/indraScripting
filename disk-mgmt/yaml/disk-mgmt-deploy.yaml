@@ -1,0 +1,34 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: disk-mgmt
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app : disk-mgmt
+    spec:
+      containers:
+        - name: disk-mgmt
+          env:
+            - name: SERVICE_ACCOUNT_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: sa-key
+                  #key: password  
+            - name: PROJECT_NAME
+              value: mayaiodev-attur
+          image: atuabhi/disk-mgmt:v1
+          imagePullPolicy: Always
+          ports:
+          - containerPort: 8080
+          volumeMounts:
+          - name: disk-mgmt-config
+            mountPath: /disk-list
+            subPath: disk-list
+      - name: disk-mgmt-config
+        configMap:
+          name: disk-mgmt-config
