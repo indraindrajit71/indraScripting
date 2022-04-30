@@ -1,0 +1,6 @@
+for i in `cat testfile`;do echo $i;ssh -q root@$i "sudo nproc";done
+
+while true; do free -g; sleep 5; done
+
+
+
