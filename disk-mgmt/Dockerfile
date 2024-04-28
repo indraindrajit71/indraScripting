@@ -7,7 +7,9 @@ RUN apt-get update && apt-get install -y software-properties-common
 
 RUN apt-get install cron
 
-ENV SERVICE_ACCOUNT_KEY ""
+ARG SERVICE_ACCOUNT_KEY ""
+ENV SERVICE_ACCOUNT_KEY ${SERVICE_ACCOUNT_KEY}
+#ENV SERVICE_ACCOUNT_KEY ""
 
 ENV PROJECT_NAME ""
 
