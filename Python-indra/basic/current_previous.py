@@ -4,4 +4,4 @@ def numbersum():
         sum=previous_num + i
         print("current number:", i, "previous number:", previous_num, "sum is:", sum)
         previous_num=i
-numbersum()
+numbersum() 
